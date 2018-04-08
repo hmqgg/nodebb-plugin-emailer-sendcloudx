@@ -1,0 +1,29 @@
+{
+  "name": "nodebb-plugin-emailer-sendcloudx",
+  "version": "0.1.0",
+  "description": "A NodeBB Emailer Plugin which enables SendCloud Service. ",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hmqgg/nodebb-plugin-emailer-sendcloudx"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "emailer",
+    "SendCloud"
+  ],
+  "author": "Mitch Hwang <acgkiller@live.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hmqgg/nodebb-plugin-emailer-sendcloudx/issues"
+  },
+  "homepage": "https://github.com/hmqgg/nodebb-plugin-emailer-sendcloudx",
+  "dependencies": {
+    "sendgrid": "1.6.3",
+    "node-email-reply-parser": "^0.1.0"
+  },
+  "nbbpm": {
+    "compatibility": "^0.9.0 || ^1.0.0 || ^1.8.0"
+  }
+}
