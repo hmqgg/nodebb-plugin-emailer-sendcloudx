@@ -12,6 +12,7 @@ var Plugins = module.parent.require('./plugins');
 var SocketHelpers = module.parent.require('./socket.io/helpers');
 var User = module.parent.require('./user');
 var hostEmailer = module.parent.require('./emailer');
+var scmail = require('sendcloud');
 var SendCloudX;
 var Emailer = {};
 
@@ -28,11 +29,11 @@ Emailer.init = function (data, callback) {
 		if (!err && settings && settings.apiUser && settings.apiKey) {
 			if (settings.sendName)
 			{
-				SendCloudX = require('sendcloud')(settings.apiUser, settings.apiKey, settings.sendName);
+				SendCloudX = new scmail(settings.apiUser, settings.apiKey, settings.sendName);
 			}
 			else
 			{
-				SendCloudX = require('sendcloud')(settings.apiUser, settings.apiKey);
+				SendCloudX = new scmail(settings.apiUser, settings.apiKey);
 			}
 		} else {
 			winston.error('[plugins/emailer-sendcloudx] API key not set!');
@@ -192,13 +193,18 @@ Emailer.send = function (data, callback) {
 					});
 				},
 				function (userData, next) {
-					SendCloudX.send(data.to, data.subject, data.html,{
-						toname: data.toName,
+					SendCloudX.send(data.to, data.subject, data.html, {
 						from: data.from,
-						fromName: data.from_name || userData.username || undefined,
+						fromname: data.from_name || userData.username || undefined,
 						plain: data.text,
 						headers: headers
-					}, next);
+					}).then(function (info){
+						var err;
+						if (info.message === 'error') {
+							err = new Error(info.errors[0]);
+						}
+						next(err);
+					});
 				},
 			], function (err) {
 				if (!err) {
