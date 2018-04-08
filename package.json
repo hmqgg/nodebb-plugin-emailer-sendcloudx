@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-emailer-sendcloudx",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A NodeBB Emailer Plugin which enables SendCloud Service. ",
   "main": "index.js",
   "repository": {
