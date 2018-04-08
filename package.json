@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/hmqgg/nodebb-plugin-emailer-sendcloudx",
   "dependencies": {
-    "sendgrid": "1.6.3",
+    "sendcloud": "1.6.3",
     "node-email-reply-parser": "^0.1.0"
   },
   "nbbpm": {
